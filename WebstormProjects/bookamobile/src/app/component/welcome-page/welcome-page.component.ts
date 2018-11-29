@@ -1,27 +1,26 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/observable';
 import {UserService} from '../../services/user.service';
 import {AddDeviceComponent} from '../add-device/add-device.component';
+import {MdDialog, MdDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss']
 })
-export class WelcomePageComponent {
+export class WelcomePageComponent implements OnInit {
 
-  title= 'Panel dodawania urządzeń';
-  val1 = '';
-  devType: Observable<any[]>;
-  devStatus: Observable<any[]>;
   devices: Observable<any[]>;
 
   activeUser: string;
   userId: any;
+  dialogRefDevice: MdDialogRef<AddDeviceComponent>;
 
   constructor(public db: AngularFireDatabase,
-              private  userService: UserService) {
+              private  userService: UserService,
+              private dialog: MdDialog) {
     userService.userChange.subscribe((email) => {
       this.activeUser = email;
       console.log(email);
@@ -30,14 +29,18 @@ export class WelcomePageComponent {
       this.userId = id;
       console.log(this.userId);
     });
-    this.devices = db.list('/devices')
-    console.log('urzadzenia', this.devices)
-
-      // .subscribe((devices) => {
-      // this.devices = devices; }); /*.valueChanges();*/
+    this.devices = db.list('/devices');
   }
-  onSubmit() {
-    this.db.list('/devices').push({ name: this.val1, type: this.devType , status: this.devStatus , addedBy: this.userId });
-    this.val1 = '';
+
+  ngOnInit() {
+    console.log(this.userService.user);
+
+    if (this.userService.user) {
+      this.activeUser = this.userService.user;
+    }
+  }
+
+  addDevice() {
+    this.dialogRefDevice = this.dialog.open(AddDeviceComponent);
   }
 }

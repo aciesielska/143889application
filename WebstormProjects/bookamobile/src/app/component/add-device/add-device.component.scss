@@ -1,0 +1,42 @@
+#device {
+  margin-bottom: 15px;
+}
+
+.form-group {
+  float:left;
+}
+
+.form-group[id="f1"]{
+  margin-left: 10px;
+}
+
+.form-group[id="f2"] {
+  margin-left: 10px;
+}
+
+.col-md-3{
+  width: 100%;
+}
+.buttons {
+
+}
+.AddDeviceComponent {
+  input {
+    max-width: 328px;
+    min-width: 227px;
+  }
+
+  button {
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+#pre{
+  font-size: 24px;
+}
+
+.btn-group{
+  margin-top: 24px;
+  margin-left: 10px;
+}

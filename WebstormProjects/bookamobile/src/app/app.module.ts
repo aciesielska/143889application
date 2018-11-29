@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
-//import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AppComponent } from './app.component';
 import { WelcomePageComponent } from './component/welcome-page/welcome-page.component';
 import { LoginComponent } from './component/login/login.component';
@@ -12,12 +11,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {UserService} from './services/user.service';
 import {FormsModule} from '@angular/forms';
 import { AddDeviceComponent } from './component/add-device/add-device.component';
+import {MdDialogModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '**', component: WelcomePageComponent}
+  {path: '**', component: WelcomePageComponent},
+  {path: 'add', component: AddDeviceComponent}
 ];
 
 // Initialize Firebase
@@ -50,7 +52,9 @@ const firebaseAuthConfig = {
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    MdDialogModule,
     AngularFireModule.initializeApp(config, firebaseAuthConfig),
+    BrowserAnimationsModule,
    // AngularFireDatabaseModule,
   ],
   providers: [

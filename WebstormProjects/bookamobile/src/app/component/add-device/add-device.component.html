@@ -1,3 +1,41 @@
-<p>
-  Tutaj powinien być komponent dodawania urządzeń, ale póki co nie działa kiedy jest poza welcome-page component :(
-</p>
+<div class="AddDeviceComponent">
+  <h1>{{title}}</h1>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+
+
+  <div class="form-group">
+    <label for="device" class="cols-sm-2 control-label">Nazwa urządzenia</label>
+    <div class="cols-sm-10">
+      <div class="input-group">
+        <input [(ngModel)]="val1" class="form-control" name="device" id="device" placeholder="Nazwa urządzenia..." required/>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="form-group" id="f1">
+      <label for="dropdownDeviceType">Rodzaj urządzenia</label>
+      <select class="form-control" id="dropdownDeviceType" name="devType" [(ngModel)]="devType" required>
+        <option>telefon</option>
+        <option>tablet</option>
+        <option>laptop</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="f2">
+      <label for="dropdownDeviceStatus">Status urządzenia</label>
+      <select class="form-control" id="dropdownDeviceStatus" name="devStatus" [(ngModel)]="devStatus" required>
+        <option>Coming soon!</option>
+        <option>Dostępne</option>
+        <option>Wypożyczone</option>
+        <option>W naprawie</option>
+        <option>Zarchiwizowane</option>
+      </select>
+    </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn btn-success" [disabled]="!form.form.valid"><i class="glyphicon glyphicon-plus"></i>Dodaj</button>
+        <button class="btn btn-danger" md-dialog-close><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
+      </div>
+</form>
+</div>
