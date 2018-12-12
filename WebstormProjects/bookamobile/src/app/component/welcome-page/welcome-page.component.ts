@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/observable';
 import {UserService} from '../../services/user.service';
 import {AddDeviceComponent} from '../add-device/add-device.component';
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {BookDeviceComponent} from "../book-device/book-device.component";
 
 @Component({
   selector: 'app-welcome-page',
@@ -17,6 +18,10 @@ export class WelcomePageComponent implements OnInit {
   activeUser: string;
   userId: any;
   dialogRefDevice: MdDialogRef<AddDeviceComponent>;
+  dialogRefEdit: MdDialogRef<BookDeviceComponent>;
+  role: any;
+  stat: any;
+
 
   constructor(public db: AngularFireDatabase,
               private  userService: UserService,
@@ -28,8 +33,10 @@ export class WelcomePageComponent implements OnInit {
     userService.userIdChange.subscribe((id) => {
       this.userId = id;
       console.log(this.userId);
+      db.list(`/users/${id}`).subscribe(u => {console.log(u[1].$value); this.role = u[1].$value; });
     });
     this.devices = db.list('/devices');
+
   }
 
   ngOnInit() {
@@ -42,5 +49,9 @@ export class WelcomePageComponent implements OnInit {
 
   addDevice() {
     this.dialogRefDevice = this.dialog.open(AddDeviceComponent);
+  }
+
+  bookDevice() {
+    this.dialogRefEdit = this.dialog.open(BookDeviceComponent);
   }
 }

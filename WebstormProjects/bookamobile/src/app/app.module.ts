@@ -13,13 +13,15 @@ import {FormsModule} from '@angular/forms';
 import { AddDeviceComponent } from './component/add-device/add-device.component';
 import {MdDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BookDeviceComponent } from './component/book-device/book-device.component';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: '**', component: WelcomePageComponent},
-  {path: 'add', component: AddDeviceComponent}
+  {path: 'add', component: AddDeviceComponent},
+  {path: 'book', component: BookDeviceComponent}
 ];
 
 // Initialize Firebase
@@ -47,6 +49,7 @@ const firebaseAuthConfig = {
     NavbarComponent,
     FooterComponent,
     AddDeviceComponent,
+    BookDeviceComponent,
   ],
   imports: [
     BrowserModule,
