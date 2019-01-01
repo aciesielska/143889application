@@ -1,5 +1,17 @@
-<p>
-  welcome-page works!
-
-  Tutaj w niedługim czasie dostępna będzie lista urządzeń
-</p>
+<div class="container-fluid">
+  <div class="col-md-3">
+    <h2>Lista Urządzeń</h2>
+    <a *ngIf="role === 'admin'"><button class="btn btn-primary" (click)="addDevice()">Dodaj nowe urządzenie</button></a>
+    <div id='list' *ngFor="let device of devices | async"><b>Nazwa:</b> {{device.name}}    <b>Typ:</b> {{device.type}}     <b>Status:</b> {{device.status}}     <span *ngIf="device.returnDate"><b>Do kiedy:</b> {{device.returnDate}} <span *ngIf="activeUser"><b>Użytkownik:</b> {{device.user}}</span></span>
+      <a *ngIf="device.status === 'Dostępne' && role==='user'">
+        <button id="notVisible" class="btn btn-primary" (click)="bookDevice(device)">Zarezerwuj</button>
+      </a>
+      <a *ngIf="device.user && device.user === activeUser">
+        <button id="returnDevice" class="btn btn-primary" (click)="returnDevice(device)">Oddaj</button>
+      </a>
+      <a *ngIf="device.status !== 'Zarezerwowane' && role === 'admin'">
+        <button id="editDevice" class="btn btn-primary" (click)="editDevice(device)">Zmień status</button>
+      </a>
+    </div>
+  </div>
+</div>

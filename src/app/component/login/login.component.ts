@@ -23,11 +23,13 @@ export class LoginComponent implements OnInit {
       console.log(this.reply);
     })
     userService.userChange.subscribe((email) => {
-      this.router.navigateByUrl('welcome');
+      this.router.navigateByUrl('');
+
     })
   }
 
   ngOnInit() {
+
   }
 
   register(user) {

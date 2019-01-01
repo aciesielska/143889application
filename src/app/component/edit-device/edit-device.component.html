@@ -1,0 +1,18 @@
+<div class="EditDeviceComponent">
+  <h1>Edycja urządzenia</h1>
+  <div class="form-group">
+    <label class="cols-sm-2 control-label">Nazwa urządzenia:</label> {{device.name}}
+  </div>
+  <label for="status">Status:</label>
+  <select id="status" [(ngModel)]="status">
+    <option>Dostępne</option>
+    <option>Wypożyczone</option>
+    <option>W naprawie</option>
+    <option>Zarchiwizowane</option>
+  </select>
+  <div class="buttons">
+    <button class="btn btn-success" (click)="changeStatus()"><i class="glyphicon glyphicon-plus"></i>
+      Zapisz
+    </button>
+  </div>
+</div>

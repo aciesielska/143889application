@@ -1,0 +1,12 @@
+<div class="BookDeviceComponent">
+  <h1>{{title}}</h1>
+    <div class="form-group">
+      <label class="cols-sm-2 control-label">Nazwa urządzenia:</label> {{device.name}}
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-success" (click)="bookFor(1)"><i class="glyphicon glyphicon-plus"></i>Rezerwuj na jeden dzień</button>
+      <button class="btn btn-success" (click)="bookFor(7)"><i class="glyphicon glyphicon-plus"></i>Rezerwuj na tydzień</button>
+      <button class="btn btn-danger" md-dialog-close><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
+    </div>
+</div>

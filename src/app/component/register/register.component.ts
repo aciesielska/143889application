@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     });
     userService.userChange.subscribe((email) => {
       this.router.navigateByUrl('welcome');
-    })
+    });
   }
 
   ngOnInit() {

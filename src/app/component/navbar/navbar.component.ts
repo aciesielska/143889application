@@ -34,8 +34,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
-  navigateToWords(type) {
-    this.router.navigateByUrl('words/' + type);
-  }
-
 }

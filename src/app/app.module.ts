@@ -1,23 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
-
-
-import { AppComponent } from './app.component';
-import { WelcomePageComponent } from './component/welcome-page/welcome-page.component';
-import { LoginComponent } from './component/login/login.component';
-import { RegisterComponent } from './component/register/register.component';
+import {AppComponent} from './app.component';
+import {WelcomePageComponent} from './component/welcome-page/welcome-page.component';
+import {LoginComponent} from './component/login/login.component';
+import {RegisterComponent} from './component/register/register.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
 import {FooterComponent} from './component/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
 import {UserService} from './services/user.service';
 import {FormsModule} from '@angular/forms';
+import {AddDeviceComponent} from './component/add-device/add-device.component';
+import {MdDialogModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BookDeviceComponent} from './component/book-device/book-device.component';
+import {EditDeviceComponent} from "./component/edit-device/edit-device.component";
 
 const appRoutes: Routes = [
   {path: '', component: WelcomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: '**', component: WelcomePageComponent}
+  {path: '**', component: WelcomePageComponent},
 ];
 
 // Initialize Firebase
@@ -44,16 +47,29 @@ const firebaseAuthConfig = {
     RegisterComponent,
     NavbarComponent,
     FooterComponent,
+    AddDeviceComponent,
+    BookDeviceComponent,
+    EditDeviceComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    MdDialogModule,
     AngularFireModule.initializeApp(config, firebaseAuthConfig),
+    BrowserAnimationsModule,
+    // AngularFireDatabaseModule,
   ],
   providers: [
     UserService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddDeviceComponent,
+    BookDeviceComponent,
+    EditDeviceComponent,
+  ]
 })
-export class AppModule { }
+export class AppModule {
+
+}
